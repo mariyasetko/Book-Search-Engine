@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
@@ -12,7 +12,7 @@ const SavedBooks = () => {
   
   const { loading, data } = useQuery(GET_ME);
 
-  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+  const [removeBook] = useMutation(REMOVE_BOOK);
 
   const userData = data?.me;
 
@@ -24,16 +24,8 @@ const SavedBooks = () => {
       return false;
     }
 
-    try {
-      const {data} = await removeBook({
-        variables: {bookId: bookId}
-      })
-
-      // upon success, remove book's id from localStorage
-      removeBookId(bookId);
-    } catch (err) {
-      console.error(error);
-    }
+    removeBook({variables: {bookId: bookId}, token})
+    removeBookId(bookId)
   };
 
   // if data isn't here yet, say so
