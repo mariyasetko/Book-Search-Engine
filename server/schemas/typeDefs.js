@@ -6,6 +6,7 @@ type User {
     _id: ID!
     username: String!
     email: String!
+    password: String,
     bookCount: Int
     savedBooks: [Book]
 }
@@ -34,6 +35,7 @@ input saveBook {
 }
 
 type Query {
+    testUserDeleteMe:[User]
     me: User
     books: [Book]
 }
