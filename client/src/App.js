@@ -42,7 +42,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route 
-              path='/' 
+             exact path='/' 
               element={<SearchBooks />} 
             />
             <Route 
