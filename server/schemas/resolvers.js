@@ -4,9 +4,6 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        testUserDeleteMe: async (parent)=>{
-            return User.find({})
-        },
         me: async (parent, { _id }, context) => {
         
             if (context.user) {
@@ -16,11 +13,7 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in! resolvers');
         },
-    
-        books: async () => { 
-            return await Book.find({});
-        }
-        },
+    },
 
     Mutation: {
         addUser: async (parent, args) => {
@@ -51,7 +44,7 @@ const resolvers = {
             if (context.user) {
                 return User.findOneAndUpdate(
                     { _id: context.user._id },
-                    {$addToSet: { savedBooks: content },},
+                    {$addToSet: { savedBooks: content }},
                     {new: true,
                     runValidators: true,
                     }

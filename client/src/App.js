@@ -12,7 +12,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
-  uri: 'https://frozen-bayou-33586.herokuapp.com/graphql',
+  uri: '/graphql',
   cache: new InMemoryCache(),
 });
 

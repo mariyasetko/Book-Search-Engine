@@ -11,23 +11,21 @@ import { REMOVE_BOOK } from '../utils/mutations';
 const SavedBooks = () => {
   const [deleteBook]= useMutation(REMOVE_BOOK)  
 
-  let userData;
-  const {loading, error, data} = useQuery(GET_ME, {pollInterval: 100});
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
-  if(!loading && !error){
-    userData = data.me
-  }
-  
+  const {loading, error, data} = useQuery(GET_ME);
+  const userData = data?.me || {};
+
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
       return false;
     }
-    deleteBook({variables: {bookId: bookId}, token})
+    await deleteBook({variables: {bookId: bookId}, token})
     removeBookId(bookId);
 
   }
+if (loading){
+  return <h2>loading</h2>
+};
 
   return (
     <>
