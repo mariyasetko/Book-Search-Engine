@@ -12,12 +12,12 @@ type User {
 }
 
 type Book {
-    bookId: ID!
+    bookId: ID
     authors: [String]
-    description: String!
-    title: String!
+    description: String
+    title: String
     image: String
-    link: String!
+    link: String
 }
 
 type Auth {
@@ -26,7 +26,7 @@ type Auth {
 }
 
 input saveBook {
-    bookId: ID!
+    bookId: ID
     authors: [String]
     description: String
     image: String
@@ -35,9 +35,7 @@ input saveBook {
 }
 
 type Query {
-    testUserDeleteMe: [User]
     me: User
-    books: [Book]
 }
 
 type Mutation {

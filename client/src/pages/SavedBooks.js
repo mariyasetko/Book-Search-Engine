@@ -13,13 +13,13 @@ const SavedBooks = () => {
 
   const {loading, error, data} = useQuery(GET_ME);
   const userData = data?.me || {};
-
+console.log(userData);
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
       return false;
     }
-    await deleteBook({variables: {bookId: bookId}, token})
+    await deleteBook({variables: {bookId: bookId}})
     removeBookId(bookId);
 
   }
